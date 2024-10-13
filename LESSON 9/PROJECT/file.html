@@ -7,8 +7,16 @@
 </head>
 <body>
     <script>
-        var student=["Mango","Örange","Pineapple"]
-        docuent.getElementById("demo").innerHTML=student[0];
+        var fruit=["Mango","Örange","Pineapple"]
+        docuent.getElementById("demo").innerHTML=fruit[0];
+        function add(a,b) {
+            return a+b;
+        }
+        function average(a,b){
+            return add(a,b) / 2;
+        }
+        let result=average(16,50);
+            document.getElementById("demo").innerHTML=result;
     </script>
 </body>
 </html>
