@@ -1,0 +1,30 @@
+.element{
+    height: 200px;
+    width: 200px;
+    background: #0071FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: white;
+    
+    animation-duration: 3s;
+    animation-name: spin;
+}
+@keyframes spin{
+    0%{
+
+    }
+    50%{
+        scale: 2;
+        transform: rotate(0);
+        border-radius: (0);
+    }
+    100%{
+        transform: rotate;
+        border-radius: 50%;
+        scale: 2;
+    }
+}
