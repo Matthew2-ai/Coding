@@ -5,7 +5,7 @@ guess = 0
 
 while guess  != number:
 
-    guess = int(input("Enter Guess: "))
+    guess = int(input("Enter Ur Guess: "))
 
     if (guess < number):
         print("Guess Higher🤣: ")
