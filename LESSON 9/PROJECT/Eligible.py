@@ -7,5 +7,5 @@ if timeinwork>=6:
     print("Welldone")
 
 else:
-    print("Excellent") 
+    print("FIRED!!!") 
 
