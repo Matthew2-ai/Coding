@@ -1,6 +1,35 @@
+.mathjosh{
+  overflow: hidden;
+  background-color: black;
+  height: 100px;
+  
+}
+.mathjosh a{
+  /*float:left;*/
+  color: #1affa3;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+.mathjosh a:hover{
+  text-decoration: underline;
+}
+.mathjosh a.active{
+  text-decoration: underline}        
+
+.joshmath a.active{
+  text-decoration: underline;}
 p{
   text-align: center;    
   font-size:larger;
 
 }
 
+img{
+  height: 40px;
+  margin-right: 20px;
+  
+  
+}
