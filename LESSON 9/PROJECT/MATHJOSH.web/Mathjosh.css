@@ -1,9 +1,13 @@
 form{
     width: 1000px;
-    
+    text-align: center;
 }
 
 input{
-    width: 30%;
+    width: 40%;
     height: 30px;
+    text-align: center;
+}
+legend{
+    text-align: center;
 }

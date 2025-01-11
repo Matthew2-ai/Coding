@@ -8,7 +8,7 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 
-<!-- My CSS -->
+
 
 <link rel="stylesheet" href="TAN.css" />
 
@@ -31,45 +31,37 @@
     
         <div class="row">
             <div class="col-6 d-flex justify-content-start align-items-center">
-                <img src="J.png" alt="logo">
+                <img src="J.png" alt="logo" id="MJ">
                 <i class="fa fa-spinner fa-spin fa-3x "></i>
                 <h3 class="d-inline text-danger pl-2">MATH-JOSH </h3>
                 <h4 class="d-inline text-primary pl-2">INTEGRATED SERVICES</h4>
-                
         </div>
         <div class="row text-center p-0 d-flex justify-content-end align-items-center">
             <div class="col-3">
+                <a href="mailto:seunakinleye1@gmail.com" class="text-primary navigation-link">EMAIL_US</a>
+            </div>
+            <div class="col-3">
+                <a href="tel:+2348025357865" class="text-warning navigation-link">CALL_US</a>
+            </div>
+            </div>
+            </div>
             
-                
-                <a href="mailto:akinleyeabidemi3@gmail.com" class="text-decoration" >Email_Us</a>
-            </div>
-            <div class="col-3">
-                <a href="tel:+2348025747104" class="text-warning navigation-link">Call_Us</a>
-            </div>
-            <div class="col-3">
-                <a href="TEST.html" class="text-secondary navigation-link">BUSINESS</a>
-            </div>
-            <div class="col-3">
-                <a href="#Contact" class="text-primary navigation-link">CONTACT_US</a>
-            </div>
-            </div>
-
-                
-
+            
+    
                 <div class="row text-center p-0 d-flex justify-content-end align-items-center">
                     <div class="col-3">
                     
                         
-                        <a href="TAN.html" class="text-decoration" >HOME</a>
+                        <a href="TAN.html" class="text-decoration">HOME</a>
                     </div>
                     <div class="col-3">
-                        <a href="" class="text-warning navigation-link">ABOUT_US</a>
+                        <a href="JOSHMATH.html" class="text-warning navigation-link">ABOUT_US</a>
                     </div>
                     <div class="col-3">
                         <a href="TEST.html" class="text-secondary navigation-link">BUSINESS</a>
                     </div>
                     <div class="col-3">
-                        <a href="#Contact" class="text-primary navigation-link">CONTACT_US</a>
+                        <a href="Mathjosh.html" class="text-primary navigation-link">CONTACT_US</a>
                     </div>
                     </div>
                     </div>
@@ -84,8 +76,69 @@
         </div>
     </div>
 </div>
-    
-    
-    
+
+<h5>YOUR TRUSTED ELECTRICIAN</h5>
+
+
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 5</div>
+  <img src="M.jpg" style="width:100%">
+  
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 5</div>
+  <img src="HOUSE.png" style="width:100%">
+  
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 5</div>
+  <img src="JM.jpg" style="width:100%">
+  
+  <div class="mySlides fade">
+    <div class="numbertext">4 / 5</div>
+    <img src="HARD.png">
+  </div>
+</div>
+    <div class="mySlides fade">
+        <div class="numbertext">5 / 5</div>
+        <img src="SOFT.png">
+    </div>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += "active";
+  setTimeout(showSlides, 10000); // Change image every 2 seconds
+}
+</script>
+    <img  src="d.png" id="JM">
 </body>
 </html>
