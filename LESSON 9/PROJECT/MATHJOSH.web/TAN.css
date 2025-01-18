@@ -1,7 +1,7 @@
 .mathjosh{
   overflow: hidden;
   background-color: black;
-  height: 100px;
+  height: 120px;
   
 }
 .mathjosh a{
@@ -39,7 +39,7 @@ p{
 body{
   
 }
-* {box-sizing: border-box;}
+box-sizing: border-box;
 body {font-family: Verdana, sans-serif;}
 .mySlides {display: none;}
 img {vertical-align: middle;}
@@ -101,7 +101,29 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
-h5{
-  font-size: 50px;
+
+#GG{
+  height: 500px;
+  
+}
+
+form{
+  width: 1000px;
   text-align: center;
+}
+
+input{
+  width: 40%;
+  height: 30px;
+  text-align: center;
+}
+legend{
+  text-align: center;
+}
+
+#HH{
+  color:blue;
+}
+h3{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

@@ -12,11 +12,9 @@
 
 <link rel="stylesheet" href="TAN.css" />
 
-<!-- Font Awesome -->
-
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
-<!-- Google Fonts -->
+
 
 
 
@@ -65,7 +63,7 @@
                     </div>
                     </div>
                     </div>
-                </section>
+                  </section>
                 
                     
                 </div>
@@ -77,68 +75,69 @@
     </div>
 </div>
 
-<h5>YOUR TRUSTED ELECTRICIAN</h5>
-
 
 <div class="slideshow-container">
 
-<div class="mySlides fade">
-  <div class="numbertext">1 / 5</div>
-  <img src="M.jpg" style="width:100%">
-  
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">2 / 5</div>
-  <img src="HOUSE.png" style="width:100%">
-  
-</div>
-
-<div class="mySlides fade">
-  <div class="numbertext">3 / 5</div>
-  <img src="JM.jpg" style="width:100%">
-  
-  <div class="mySlides fade">
-    <div class="numbertext">4 / 5</div>
-    <img src="HARD.png">
+  <div class="mySlides ">
+    <div class="numbertext">1 / 5</div>
+    <img id="GG" src="M.jpg" style="width:100%">
   </div>
-</div>
-    <div class="mySlides fade">
-        <div class="numbertext">5 / 5</div>
-        <img src="SOFT.png">
-    </div>
-</div>
-<br>
 
-<div style="text-align:center">
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span> 
-  <span class="dot"></span>
-  <span class="dot"></span>
-</div>
+  <div class="mySlides ">
+    <div class="numbertext">2 / 5</div>
+    <img id="GG" src="HOUSE.png" style="width:100%">
+  </div>
+  
+  <div class="mySlides ">
+    <div class="numbertext">3 / 5</div>
+    <img id="GG" src="HARD.png" style="width:100%">
+  </div>
 
-<script>
-let slideIndex = 0;
-showSlides();
+  <div class="mySlides ">
+    <div class="numbertext">4 / 5</div>
+    <img id="GG" src="JM.png" style="width:100%">
+  </div>
 
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+  <div class="mySlides ">
+    <div class="numbertext">5 / 5</div>
+    <img id="GG" src="JM.jpg  " style="width:100%">
+  </div>
+  </div>
+  <br>
+  
+  <div style="text-align:center">
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <span class="dot"></span> 
+    <span class="dot"></span>
+  </div>
+  
+  <script>
+  let slideIndex = 0;
+  showSlides();
+  
+  function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+    }
+    slideIndex++;
+    if (slideIndex > slides.length) {slideIndex = 1}    
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";  
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 7000); 
   }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += "active";
-  setTimeout(showSlides, 10000); // Change image every 2 seconds
-}
-</script>
-    <img  src="d.png" id="JM">
+  </script>
+
+<
+
+
+</form>
 </body>
 </html>
