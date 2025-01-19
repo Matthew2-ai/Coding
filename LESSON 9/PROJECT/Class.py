@@ -42,10 +42,10 @@ if __name__ == '__main__':
 
     while True:
         print(
-            f"\nHello {user_name}, welcome to the {books.name} library. Please choose an option:"
+            f"/nHello {user_name}, welcome to the {books.name} library. Please choose an option:"
         )
         print(
-            "1. Display Books\n2. Lend a Book\n3. Add a Book\n4. Return a Book\n5. Quit"
+            "1. Display Books/n2. Lend a Book/n3. Add a Book/n4. Return a Book/n5. Quit"
         )
         user_choice = input("Enter your choice to continue: ")
 
