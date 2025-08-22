@@ -3,9 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SIXOS Care Company - Healthcare Services Slideshow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #2c5aa0 0%, #1e8a3e 50%, #4f46e5 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slideshow-container {
+            max-width: 1200px;
+            position: relative;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .slideshow-header {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .company-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 2rem;
+            color: #2563eb;
+        }
+
+        .slideshow-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .slideshow-header .tagline {
+            opacity: 0.95;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .slides-wrapper {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: block;
+            animation: slideIn 0.8s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { 
+                opacity: 0; 
+                transform: translateX(50px) scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateX(0) scale(1); 
+            }
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(37, 99, 235, 0.95));
+            color: white;
+            padding: 50px 40px 30px;
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slide-description {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.6;
+            max-width: 800px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.95);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: #2563eb;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .navigation:hover {
+            background: white;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.2);
+        }
+
+        .prev {
+            left: 25px;
+        }
+
+        .next {
+            right: 25px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            background: #f8fcfb81;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+
+        .slide-counter {
+            background: #374151;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            padding: 25px;
+            background: #f8fafc;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 75px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 4px solid transparent;
+            object-fit: cover;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+            border-color: #2563eb;
+        }
+
+        .thumbnail.active {
+            border-color: #2563eb;
+            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: #e5e7eb;
+            position: relative;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(37, 99, 235, 0.9);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .slideshow-container {
+                margin: 10px;
+            }
+
+            .slides-wrapper {
+                height: 400px;
+            }
+
+            .slideshow-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-title {
+                font-size: 1.8rem;
+            }
+
+            .controls {
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .thumbnails {
+                gap: 10px;
+            }
+
+            .thumbnail {
+                width: 80px;
+                height: 60px;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    
+    <div class="slideshow-container" id="slideshowContainer">
+        <div class="slideshow-header">
+            <div class="company-logo">
+                <div class="logo-icon">🏥</div>
+                <div>
+                    <h1>SIXOS Care Company</h1>
+                    <p class="tagline">HEALTHH FOR EVERY HEARTBEAT</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div class="slides-wrapper">
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Modern Healthcare Facility">
+                <div class="service-badge">Primary Care</div>
+                <div class="slide-content">
+                    <div class="slide-title">State-of-the-Art Medical Facilities</div>
+                    <div class="slide-description">SIXOS Care Company provides world-class healthcare services in modern, fully-equipped medical facilities designed for patient comfort and optimal care delivery.</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="/images/MedicalTeam.jpg" alt="Professional Medical Team">
+                <div class="service-badge">Expert Care</div>
+                <div class="slide-content">
+                    <div class="slide-title">Dedicated Healthcare Professionals</div>
+                    <div class="slide-description">Our team of experienced doctors, nurses, and healthcare specialists are committed to providing personalized, compassionate care to every patient.</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Advanced Medical Technology">
+                <div class="service-badge">Technology</div>
+                <div class="slide-content">
+                    <div class="slide-title">Advanced Medical Technology</div>
+                    <div class="slide-description">Utilizing cutting-edge medical equipment and innovative treatment methods to ensure accurate diagnosis and effective treatment outcomes.</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Patient Care">
+                <div class="service-badge">Patient Care</div>
+                <div class="slide-content">
+                    <div class="slide-title">Comprehensive Patient Care</div>
+                    <div class="slide-description">From routine check-ups to specialized treatments, we offer comprehensive healthcare services tailored to meet each patient's unique needs and health goals.</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="" alt="Emergency Care">
+                <div class="service-badge">Emergency</div>
+                <div class="slide-content">
+                    <div class="slide-title">24/7 Emergency Services</div>
+                    <div class="slide-description">Round-the-clock emergency care with rapid response times and immediate medical attention when you need it most.</div>
+                </div>
+            </div>
+
+            <div class="slide">
+                <img src="/images/FamilyHealthcare.jpg" alt="Family Healthcare">
+                <div class="service-badge">Family Care</div>
+                <div class="slide-content">
+                    <div class="slide-title">Family-Centered Healthcare</div>
+                    <div class="slide-description">Comprehensive healthcare solutions for the entire family, from pediatrics to geriatric care, ensuring healthy lives for all generations.</div>
+                </div>
+            </div>
+
+            <button class="navigation prev" onclick="changeSlide(-1)">❮</button>
+            <button class="navigation next" onclick="changeSlide(1)">❯</button>
+        </div>
+
+        <div class="thumbnails">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail active" onclick="currentSlide(1)" alt="Medical Facility">
+            <img src="/images/MedicalTeam.jpg" class="thumbnail" onclick="currentSlide(2)" alt="Medical Team">
+            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail" onclick="currentSlide(3)" alt="Medical Technology">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail" onclick="currentSlide(4)" alt="Patient Care">
+            <img src="/images/EmergencyCare.jpg" class="thumbnail" onclick="currentSlide(5)" alt="Emergency Care">
+            <img src="/images/FamilyCare.jpg" class="thumbnail" onclick="currentSlide(6)" alt="Family Care">
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+        let slideInterval;
+        let isPlaying = true;
+        let slideSpeed = 4000;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(slideIndex);
+            startSlideshow();
+            updateTotalSlides();
+        });
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+                        
+            slides[slideIndex - 1].classList.add('active');
+            thumbnails[slideIndex - 1].classList.add('active');
+                        
+            document.getElementById('currentSlide').textContent = slideIndex;
+            
+            resetProgressBar();
+        }
+
+        function changeSlide(n) {
+            slideIndex += n;
+            showSlide(slideIndex);
+            
+            if (isPlaying) {
+                restartSlideshow();
+            }
+        }
+
+        function currentSlide(n) {
+            slideIndex = n;
+            showSlide(slideIndex);
+            
+            if (isPlaying) {
+                restartSlideshow();
+            }
+        }
+
+        function startSlideshow() {
+            if (slideInterval) clearInterval(slideInterval);
+            
+            slideInterval = setInterval(() => {
+                slideIndex++;
+                showSlide(slideIndex);
+            }, slideSpeed);
+            
+            startProgressBar();
+        }
+
+        function stopSlideshow() {
+            if (slideInterval) {
+                clearInterval(slideInterval);
+                slideInterval = null;
+            }
+            stopProgressBar();
+        }
+
+        function restartSlideshow() {
+            stopSlideshow();
+            startSlideshow();
+        }
+
+        function toggleSlideshow() {
+            const playIcon = document.getElementById('playIcon');
+            const playText = document.getElementById('playText');
+            
+            if (isPlaying) {
+                stopSlideshow();
+                playIcon.textContent = '▶️';
+                playText.textContent = 'Play';
+                isPlaying = false;
+            } else {
+                startSlideshow();
+                playIcon.textContent = '⏸️';
+                playText.textContent = 'Pause';
+                isPlaying = true;
+            }
+        }
+
+        function changeSpeed() {
+            const speedSelect = document.getElementById('speedSelect');
+            slideSpeed = parseInt(speedSelect.value);
+            
+            if (isPlaying) {
+                restartSlideshow();
+            }
+        }
+
+        function updateTotalSlides() {
+            const totalSlides = document.querySelectorAll('.slide').length;
+            document.getElementById('totalSlides').textContent = totalSlides;
+        }
+
+        let progressInterval;
+
+        function startProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            let width = 0;
+            const increment = 100 / (slideSpeed / 50);
+            
+            if (progressInterval) clearInterval(progressInterval);
+            
+            progressInterval = setInterval(() => {
+                width += increment;
+                if (width >= 100) {
+                    width = 100;
+                    clearInterval(progressInterval);
+                }
+                progressBar.style.width = width + '%';
+            }, 50);
+        }
+
+        function stopProgressBar() {
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+        }
+
+        function resetProgressBar() {
+            const progressBar = document.getElementById('progressBar');
+            progressBar.style.width = '0%';
+            if (isPlaying) {
+                startProgressBar();
+            }
+        }
+
+
+
+
+        document.addEventListener('fullscreenchange', () => {
+            const container = document.getElementById('slideshowContainer');
+            if (!document.fullscreenElement) {
+                container.classList.remove('fullscreen');
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            switch(e.key) {
+                case 'ArrowLeft':
+                    changeSlide(-1);
+                    break;
+                case 'ArrowRight':
+                    changeSlide(1);
+                    break;
+                case ' ':
+                    e.preventDefault();
+                    toggleSlideshow();
+                    break;
+                case 'f':
+                case 'F':
+                    toggleFullscreen();
+                    break;
+                case 'Escape':
+                    if (document.fullscreenElement) {
+                        toggleFullscreen();
+                    }
+                    break;
+            }
+        });
+
+     
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changeSlide(1); 
+                } else {
+                    changeSlide(-1); 
+                }
+            }
+        }
+
+        // Auto-pause on hover for better UX
+        const slideshowContainer = document.getElementById('slideshowContainer');
+        let wasPlayingBeforeHover = false;
+
+        slideshowContainer.addEventListener('mouseenter', () => {
+            if (isPlaying) {
+                wasPlayingBeforeHover = true;
+                stopSlideshow();
+            }
+        });
+
+        slideshowContainer.addEventListener('mouseleave', () => {
+            if (wasPlayingBeforeHover) {
+                startSlideshow();
+                wasPlayingBeforeHover = false;
+            }
+        });
+    </script>
 </body>
 </html>
