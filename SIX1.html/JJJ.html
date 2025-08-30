@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIXOS Care Company - Healthcare Services Slideshow</title>
+    
     <style>
         * {
             margin: 0;
@@ -11,15 +12,6 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #2c5aa0 0%, #1e3a8a 50%, #4f46e5 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
 
         .slideshow-container {
             max-width: 1200px;
@@ -31,7 +23,7 @@
         }
 
         .slideshow-header {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #25eb88, #1d4ed8);
             color: white;
             padding: 30px;
             text-align: center;
@@ -176,7 +168,7 @@
         }
 
         .play-pause-btn {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            background: linear-gradient(135deg, #25eb4d, #1d4ed8);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -256,7 +248,7 @@
 
         .fullscreen-btn {
             background: #059669;
-            color: white;
+            color: rgb(255, 255, 255);
             border: none;
             padding: 15px 30px;
             border-radius: 30px;
@@ -279,7 +271,7 @@
 
         .progress {
             height: 100%;
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            background: linear-gradient(90deg, #25eb8f, #1d4ed8);
             width: 0%;
             transition: width 0.1s linear;
         }
@@ -329,32 +321,16 @@
             }
         }
 
-        /* Fullscreen styles */
-        .fullscreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1000;
-            background: black;
-        }
-
-        .fullscreen .slides-wrapper {
-            height: calc(100vh - 200px);
-        }
-
-        .fullscreen .slide img {
-            object-fit: contain;
-        }
+        
     </style>
 </head>
-<body>
+
+ 
     <div class="slideshow-container" id="slideshowContainer">
         <div class="slideshow-header">
             <div class="company-logo">
                 <div class="logo-icon">
-                    <img src="">
+                    <img src="/Dark Green and Lime Green Modern Gradient Doctor Health Logo.png" height="70px" width="70px">
                 </div>
                 <div>
                     <h1>SIXOS Care Company</h1>
@@ -609,7 +585,7 @@
             }
         }
 
-        // Auto-pause on hover for better UX
+
         const slideshowContainer = document.getElementById('slideshowContainer');
         let wasPlayingBeforeHover = false;
 

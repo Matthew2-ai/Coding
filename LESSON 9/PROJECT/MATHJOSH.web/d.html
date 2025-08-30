@@ -3,570 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SIXOS Care Company - Healthcare Services Slideshow</title>
+    <title>Resources – LivingWaters Healthcare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-
-        .slideshow-container {
-            max-width: 5000px;
-            position: relative;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            overflow: hidden;
-        }
-
-        .slideshow-header {
-            background: linear-gradient(135deg, #25eba9, #1d4ed8);
-            color: white;
-            padding: 30px;
-            text-align: center;
-            position: relative;
-        }
-
-        .company-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 2rem;
-            color: #2563eb;
-        }
-
-        .slideshow-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
-        .slideshow-header .tagline {
-            opacity: 0.95;
-            font-size: 1.2rem;
-            font-weight: 300;
-        }
-
-        .slides-wrapper {
-            position: relative;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        .slide {
-            display: none;
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .slide.active {
-            display: block;
-            animation: slideIn 0.8s ease-in-out;
-        }
-
-        @keyframes slideIn {
-            from { 
-                opacity: 0; 
-                transform: translateX(50px) scale(0.95); 
-            }
-            to { 
-                opacity: 1; 
-                transform: translateX(0) scale(1); 
-            }
-        }
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            cursor: pointer;
-        }
-
-        .slide-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(37, 99, 235, 0.95));
-            color: white;
-            padding: 50px 40px 30px;
-        }
-
-        .slide-title {
-            font-size: 2.2rem;
-            margin-bottom: 15px;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .slide-description {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            line-height: 1.6;
-            max-width: 800px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        }
-
-        .navigation {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255,255,255,0.95);
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.8rem;
-            color: #2563eb;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .navigation:hover {
-            background: white;
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.2);
-        }
-
-        .prev {
-            left: 25px;
-        }
-
-        .next {
-            right: 25px;
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 25px;
-            background: #f8fcfb81;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-
-        .slide-counter {
-            background: #374151;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-
-        .thumbnails {
-            display: flex;
-            justify-content: center;
-            padding: 25px;
-            background: #f8fafc;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .thumbnail {
-            width: 100px;
-            height: 75px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 4px solid transparent;
-            object-fit: cover;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.1);
-            border-color: #2563eb;
-        }
-
-        .thumbnail.active {
-            border-color: #2563eb;
-            box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-        }
-
-        .progress-bar {
-            height: 5px;
-            background: #e5e7eb;
-            position: relative;
-        }
-
-        .progress {
-            height: 100%;
-            background: linear-gradient(90deg, #2563eb, #1d4ed8);
-            width: 0%;
-            transition: width 0.1s linear;
-        }
-
-        .service-badge {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(37, 99, 235, 0.9);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .slideshow-container {
-                margin: 10px;
-            }
-
-            .slides-wrapper {
-                height: 400px;
-            }
-
-            .slideshow-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .slide-title {
-                font-size: 1.8rem;
-            }
-
-            .controls {
-                flex-wrap: wrap;
-                gap: 15px;
-                padding: 20px;
-            }
-
-            .thumbnails {
-                gap: 10px;
-            }
-
-            .thumbnail {
-                width: 80px;
-                height: 60px;
-            }
-        }
-
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu { display: none; }
     </style>
 </head>
-<body>
-    <div class="slideshow-container" id="slideshowContainer">
-        <div class="slideshow-header">
-            <div class="company-logo">
-                <div class="logo-icon">
-                    <img src="/Dark Green and Lime Green Modern Gradient Doctor Health Logo.png" height="70px" width="70px">
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <!-- Top Contact Bar -->
+        <div class="bg-blue-900 text-white py-2 px-4">
+            <div class="container mx-auto flex justify-between items-center text-sm">
+                <div class="flex items-center space-x-4">
+                    <span><i class="fas fa-phone"></i> +1 (437) 800 1534</span>
+                    <span><i class="fas fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="442d2a222b04282d322d2a233325302136372c212528302c272536216a272b29">[email&#160;protected]</a></span>
                 </div>
-                <div>
-                    <h1>SIXOS Care Company</h1>
-                    <p class="tagline">HEALTH FOR EVERY HEARTBEAT</p>
+                <div class="flex items-center space-x-4">
+                    <span><i class="fas fa-clock"></i> Mon-Sun: 9:00 AM - 5:00 PM</span>
                 </div>
             </div>
         </div>
 
-        <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
-        </div>
-
-        <div class="slides-wrapper">
-            <div class="slide active">
-                <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80" alt="Modern Healthcare Facility">
-                <div class="service-badge">Primary Care</div>
-                <div class="slide-content">
-                    <div class="slide-title">State-of-the-Art Medical Facilities</div>
-                    <div class="slide-description">SIXOS Care Company provides world-class healthcare services in modern, fully-equipped medical facilities designed for patient comfort and optimal care delivery.</div>
+        <!-- Main Navigation -->
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <img src="https://via.placeholder.com/150x50/0066cc/ffffff?text=LivingWaters" alt="LivingWaters Healthcare" class="h-12">
                 </div>
-            </div>
 
-            <div class="slide">
-                <img src="/images/MedicalTeam.jpg" alt="Professional Medical Team">
-                <div class="service-badge">Expert Care</div>
-                <div class="slide-content">
-                    <div class="slide-title">Dedicated Healthcare Professionals</div>
-                    <div class="slide-description">Our team of experienced doctors, nurses, and healthcare specialists are committed to providing personalized, compassionate care to every patient.</div>
+                <!-- Navigation Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">HOME</a>
+                    <a href="#" class="text-gray-700 hover:text-blue-600 font-medium">GENERAL SERVICES</a>
+                    
+                    <!-- Healthcare Services Dropdown -->
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            HEALTHCARE SERVICES <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu absolute top-full left-0 bg-white shadow-lg rounded-md py-2 w-64 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Hospital Support</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Long Term Care Support</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Community Living Support</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Elderly Support at Home</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Shelter Support</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Home Care</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Respite Care</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Memory Care</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Transportation</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Request For Service</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Foster Care</a>
+                        </div>
+                    </div>
+
+                    <!-- Careers Dropdown -->
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            CAREERS <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu absolute top-full left-0 bg-white shadow-lg rounded-md py-2 w-48 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">FAQ</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Job Requirements</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Current Job Openings</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-blue-600 hover:text-blue-700 font-medium">RESOURCES</a>
+                    
+                    <!-- Contact Dropdown -->
+                    <div class="dropdown relative">
+                        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            CONTACT <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </a>
+                        <div class="dropdown-menu absolute top-full left-0 bg-white shadow-lg rounded-md py-2 w-48 z-50">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Our Team</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Reach Us</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Covid-19 Policy</a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
             </div>
+        </nav>
+    </header>
 
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Advanced Medical Technology">
-                <div class="service-badge">Technology</div>
-                <div class="slide-content">
-                    <div class="slide-title">Advanced Medical Technology</div>
-                    <div class="slide-description">Utilizing cutting-edge medical equipment and innovative treatment methods to ensure accurate diagnosis and effective treatment outcomes.</div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Patient Care">
-                <div class="service-badge">Patient Care</div>
-                <div class="slide-content">
-                    <div class="slide-title">Comprehensive Patient Care</div>
-                    <div class="slide-description">From routine check-ups to specialized treatments, we offer comprehensive healthcare services tailored to meet each patient's unique needs and health goals.</div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <img src="" alt="Emergency Care">
-                <div class="service-badge">Emergency</div>
-                <div class="slide-content">
-                    <div class="slide-title">24/7 Emergency Services</div>
-                    <div class="slide-description">Round-the-clock emergency care with rapid response times and immediate medical attention when you need it most.</div>
-                </div>
-            </div>
-
-            <div class="slide">
-                <img src="/images/FamilyHealthcare.jpg" alt="Family Healthcare">
-                <div class="service-badge">Family Care</div>
-                <div class="slide-content">
-                    <div class="slide-title">Family-Centered Healthcare</div>
-                    <div class="slide-description">Comprehensive healthcare solutions for the entire family, from pediatrics to geriatric care, ensuring healthy lives for all generations.</div>
-                </div>
-            </div>
-
-            <button class="navigation prev" onclick="changeSlide(-1)">❮</button>
-            <button class="navigation next" onclick="changeSlide(1)">❯</button>
-        </div>
-
-        <div class="thumbnails">
-            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail active" onclick="currentSlide(1)" alt="Medical Facility">
-            <img src="/images/MedicalTeam.jpg" class="thumbnail" onclick="currentSlide(2)" alt="Medical Team">
-            <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail" onclick="currentSlide(3)" alt="Medical Technology">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="thumbnail" onclick="currentSlide(4)" alt="Patient Care">
-            <img src="/images/EmergencyCare.jpg" class="thumbnail" onclick="currentSlide(5)" alt="Emergency Care">
-            <img src="/images/FamilyCare.jpg" class="thumbnail" onclick="currentSlide(6)" alt="Family Care">
+    <!-- Breadcrumb -->
+    <div class="bg-gray-100 py-4">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">Resources</h1>
+            <nav class="text-sm text-gray-600">
+                <a href="#" class="hover:text-blue-600">HOME</a>
+                <i class="fas fa-angle-right mx-2"></i>
+                <a href="#" class="hover:text-blue-600">ELDERLY CARE</a>
+                <i class="fas fa-angle-right mx-2"></i>
+                <span class="text-gray-800">RESOURCES</span>
+            </nav>
         </div>
     </div>
 
-    <script>
-        let slideIndex = 1;
-        let slideInterval;
-        let isPlaying = true;
-        let slideSpeed = 4000;
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Main Content Area -->
+            <main class="lg:w-2/3">
+                <!-- Article 1: Elderly Care -->
+                <article class="bg-white rounded-lg shadow-sm mb-8 overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 text-white rounded-lg p-3 mr-4">
+                                <i class="fas fa-search text-xl"></i>
+                            </div>
+                            <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                                <div class="text-lg font-bold">26</div>
+                                <div class="text-xs">Dec</div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                            <a href="#" class="hover:text-blue-600">Elderly Care</a>
+                        </h2>
+                        
+                        <div class="text-gray-600 mb-6 space-y-4">
+                            <p>Elderly care, or simply eldercare, is the fulfillment of the special needs and requirements that are unique to senior citizens. This broad term encompasses such services as assisted living, adult daycare, long-term care, nursing homes, hospice care, and home care. Because of the wide variety of elderly care found globally, as well as differentiating cultural perspectives on elderly citizens, the subject cannot be limited to any one practice. For example, many countries in Asia use government-established elderly care quite infrequently, preferring the traditional methods of being cared for by younger generations of family members.</p>
+                            
+                            <p>Elderly care emphasizes the social and personal requirements of senior citizens who need some assistance with daily activities and health care, but who desire to age with dignity. It is an important distinction, in that the design of housing, services, activities, employee training and such should be truly customer-centered. It is also noteworthy that a large amount of global elderly care falls under the unpaid market sector.</p>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-4 space-x-4">
+                            <span><i class="fas fa-user mr-1"></i> By <a href="#" class="text-blue-600 hover:underline">webteam</a></span>
+                            <span><i class="fas fa-folder mr-1"></i> <a href="#" class="text-blue-600 hover:underline">Resources</a></span>
+                            <span><i class="fas fa-comments mr-1"></i> <a href="#" class="text-blue-600 hover:underline">0 Comments</a></span>
+                        </div>
+                        
+                        <a href="#" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">READ MORE...</a>
+                    </div>
+                </article>
 
+                <!-- Article 2: Ageing and Health -->
+                <article class="bg-white rounded-lg shadow-sm mb-8 overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 text-white rounded-lg p-3 mr-4">
+                                <i class="fas fa-search text-xl"></i>
+                            </div>
+                            <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                                <div class="text-lg font-bold">26</div>
+                                <div class="text-xs">Dec</div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                            <a href="#" class="hover:text-blue-600">Ageing and Health</a>
+                        </h2>
+                        
+                        <div class="text-gray-600 mb-6 space-y-4">
+                            <p>All stakeholders involved in healthcare are well aware of the ticking time bomb of our aging world with demand exceeding supply even within the most affluent of countries. The Director-General of the World Health Organisation (WHO) has recently drawn global attention to the fact that even in low-income countries people are living longer; however, pointedly adds that longevity is not enough. To benefit society as a whole there needs to be a refocus on how later years in life are significant to the older person; with attention to the dignity and good health.</p>
+                            
+                            <p>Aging is a natural process, which presents a unique challenge for all sections of society. Although the exact definition of the elderly age group is controversial, it is defined as persons with a chronological age of 65 years and above. With gradual improvement in healthcare delivery services, life expectancy has increased and thus the percentage of the elderly population.</p>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-4 space-x-4">
+                            <span><i class="fas fa-user mr-1"></i> By <a href="#" class="text-blue-600 hover:underline">webteam</a></span>
+                            <span><i class="fas fa-folder mr-1"></i> <a href="#" class="text-blue-600 hover:underline">Resources</a></span>
+                            <span><i class="fas fa-comments mr-1"></i> <a href="#" class="text-blue-600 hover:underline">0 Comments</a></span>
+                        </div>
+                        
+                        <a href="#" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">READ MORE...</a>
+                    </div>
+                </article>
+
+                <!-- Article 3: COVID-19 Protection -->
+                <article class="bg-white rounded-lg shadow-sm mb-8 overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-600 text-white rounded-lg p-3 mr-4">
+                                <i class="fas fa-search text-xl"></i>
+                            </div>
+                            <div class="bg-blue-600 text-white px-3 py-1 rounded text-sm">
+                                <div class="text-lg font-bold">26</div>
+                                <div class="text-xs">Dec</div>
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">
+                            <a href="#" class="hover:text-blue-600">Protecting Our Clients, Staff and Communities from COVID-19</a>
+                        </h2>
+                        
+                        <div class="text-gray-600 mb-6 space-y-4">
+                            <p><em>Official statement from Livingwaters Healthcare CEO Kemi Ibironke</em></p>
+                            
+                            <p>At Livingwaters Healthcare the health and safety of our clients, employees, and communities are always our top priority.</p>
+                            
+                            <p>Because older adults are particularly vulnerable to COVID-19, we want to reassure our staff, the families we serve, and the facilities where we work that we are monitoring this situation closely and taking precautions to help prevent the spread of this disease.</p>
+                            
+                            <p>Livingwaters Healthcare staff receive specific training on reducing the risk of illness that we continue to revisit and reemphasize with our teams. And just as we always do, we are encouraging our staff to follow Public Health Agency of Canada (PHAC) and World Health Organization (WHO) guidance for preventing the spread of illness, the foremost being hand-washing, staying home when sick and following precautions when working with clients who are sick.</p>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-4 space-x-4">
+                            <span><i class="fas fa-user mr-1"></i> By <a href="#" class="text-blue-600 hover:underline">webteam</a></span>
+                            <span><i class="fas fa-folder mr-1"></i> <a href="#" class="text-blue-600 hover:underline">Resources</a></span>
+                            <span><i class="fas fa-comments mr-1"></i> <a href="#" class="text-blue-600 hover:underline">0 Comments</a></span>
+                        </div>
+                        
+                        <a href="#" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-colors">READ MORE...</a>
+                    </div>
+                </article>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="lg:w-1/3">
+                <!-- Recent Posts Widget -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Recent Posts</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-chevron-right text-blue-600 mr-2 text-xs"></i>
+                                Elderly Care
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-chevron-right text-blue-600 mr-2 text-xs"></i>
+                                Ageing and Health
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="flex items-center text-gray-600 hover:text-blue-600">
+                                <i class="fas fa-chevron-right text-blue-600 mr-2 text-xs"></i>
+                                Protecting Our Clients, Staff and Communities from COVID-19
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Working Hours Widget -->
+                <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Working Hours</h3>
+                    <div class="text-gray-600 space-y-1">
+                        <p>Mon-Fri : 9:00 am to 5:00 pm</p>
+                        <p>Saturday : 9:00 am to 5:00 pm</p>
+                        <p>Sunday : 9:00 am to 5:00 pm</p>
+                    </div>
+                </div>
+
+                <!-- Emergency Cases Widget -->
+                <div class="bg-red-50 border border-red-200 rounded-lg p-6 mb-6">
+                    <h3 class="text-xl font-bold text-red-800 mb-4">Emergency Cases</h3>
+                    <div class="text-red-700 font-bold text-lg">
+                        <i class="fas fa-phone mr-2"></i>
+                        +1 (437) 800 1534
+                    </div>
+                </div>
+
+                <!-- Location Widget -->
+                <div class="bg-white rounded-lg shadow-sm p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Toronto</h3>
+                    <div class="text-gray-600">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        75 International Blvd, Suite 202 (WT) Toronto, ON M9W 6L9, Canada.
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; Copyright 2025. All Rights Reserved.</p>
+        </div>
+        
+        <!-- Back to Top Button -->
+        <div class="fixed bottom-4 right-4">
+            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+        </div>
+    </footer>
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Mobile menu toggle functionality
         document.addEventListener('DOMContentLoaded', function() {
-            showSlide(slideIndex);
-            startSlideshow();
-            updateTotalSlides();
-        });
-
-        function showSlide(n) {
-            const slides = document.querySelectorAll('.slide');
-            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mobileMenuButton = document.querySelector('button.md\\:hidden');
+            const navigation = document.querySelector('nav .hidden.md\\:flex');
             
-            if (n > slides.length) { slideIndex = 1; }
-            if (n < 1) { slideIndex = slides.length; }
-            
-            slides.forEach(slide => slide.classList.remove('active'));
-            thumbnails.forEach(thumb => thumb.classList.remove('active'));
-                        
-            slides[slideIndex - 1].classList.add('active');
-            thumbnails[slideIndex - 1].classList.add('active');
-                        
-            document.getElementById('currentSlide').textContent = slideIndex;
-            
-            resetProgressBar();
-        }
-
-        function changeSlide(n) {
-            slideIndex += n;
-            showSlide(slideIndex);
-            
-            if (isPlaying) {
-                restartSlideshow();
-            }
-        }
-
-        function currentSlide(n) {
-            slideIndex = n;
-            showSlide(slideIndex);
-            
-            if (isPlaying) {
-                restartSlideshow();
-            }
-        }
-
-        function startSlideshow() {
-            if (slideInterval) clearInterval(slideInterval);
-            
-            slideInterval = setInterval(() => {
-                slideIndex++;
-                showSlide(slideIndex);
-            }, slideSpeed);
-            
-            startProgressBar();
-        }
-
-        function stopSlideshow() {
-            if (slideInterval) {
-                clearInterval(slideInterval);
-                slideInterval = null;
-            }
-            stopProgressBar();
-        }
-
-        function restartSlideshow() {
-            stopSlideshow();
-            startSlideshow();
-        }
-
-        function toggleSlideshow() {
-            const playIcon = document.getElementById('playIcon');
-            const playText = document.getElementById('playText');
-            
-            if (isPlaying) {
-                stopSlideshow();
-                playIcon.textContent = '▶️';
-                playText.textContent = 'Play';
-                isPlaying = false;
-            } else {
-                startSlideshow();
-                playIcon.textContent = '⏸️';
-                playText.textContent = 'Pause';
-                isPlaying = true;
-            }
-        }
-
-        function changeSpeed() {
-            const speedSelect = document.getElementById('speedSelect');
-            slideSpeed = parseInt(speedSelect.value);
-            
-            if (isPlaying) {
-                restartSlideshow();
-            }
-        }
-
-        function updateTotalSlides() {
-            const totalSlides = document.querySelectorAll('.slide').length;
-            document.getElementById('totalSlides').textContent = totalSlides;
-        }
-
-        let progressInterval;
-
-        function startProgressBar() {
-            const progressBar = document.getElementById('progressBar');
-            let width = 0;
-            const increment = 100 / (slideSpeed / 50);
-            
-            if (progressInterval) clearInterval(progressInterval);
-            
-            progressInterval = setInterval(() => {
-                width += increment;
-                if (width >= 100) {
-                    width = 100;
-                    clearInterval(progressInterval);
-                }
-                progressBar.style.width = width + '%';
-            }, 50);
-        }
-
-        function stopProgressBar() {
-            if (progressInterval) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-            }
-        }
-
-        function resetProgressBar() {
-            const progressBar = document.getElementById('progressBar');
-            progressBar.style.width = '0%';
-            if (isPlaying) {
-                startProgressBar();
-            }
-        }
-
-
-
-
-        document.addEventListener('fullscreenchange', () => {
-            const container = document.getElementById('slideshowContainer');
-            if (!document.fullscreenElement) {
-                container.classList.remove('fullscreen');
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'ArrowLeft':
-                    changeSlide(-1);
-                    break;
-                case 'ArrowRight':
-                    changeSlide(1);
-                    break;
-                case ' ':
-                    e.preventDefault();
-                    toggleSlideshow();
-                    break;
-                case 'f':
-                case 'F':
-                    toggleFullscreen();
-                    break;
-                case 'Escape':
-                    if (document.fullscreenElement) {
-                        toggleFullscreen();
-                    }
-                    break;
-            }
-        });
-
-     
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        document.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        document.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    changeSlide(1); 
-                } else {
-                    changeSlide(-1); 
-                }
-            }
-        }
-
-        // Auto-pause on hover for better UX
-        const slideshowContainer = document.getElementById('slideshowContainer');
-        let wasPlayingBeforeHover = false;
-
-        slideshowContainer.addEventListener('mouseenter', () => {
-            if (isPlaying) {
-                wasPlayingBeforeHover = true;
-                stopSlideshow();
-            }
-        });
-
-        slideshowContainer.addEventListener('mouseleave', () => {
-            if (wasPlayingBeforeHover) {
-                startSlideshow();
-                wasPlayingBeforeHover = false;
+            if (mobileMenuButton && navigation) {
+                mobileMenuButton.addEventListener('click', function() {
+                    navigation.classList.toggle('hidden');
+                    navigation.classList.toggle('flex');
+                    navigation.classList.toggle('flex-col');
+                    navigation.classList.toggle('absolute');
+                    navigation.classList.toggle('top-full');
+                    navigation.classList.toggle('left-0');
+                    navigation.classList.toggle('w-full');
+                    navigation.classList.toggle('bg-white');
+                    navigation.classList.toggle('shadow-lg');
+                    navigation.classList.toggle('p-4');
+                });
             }
         });
     </script>
